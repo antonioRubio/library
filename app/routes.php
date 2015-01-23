@@ -16,6 +16,4 @@ Route::get('/', array('as' => 'index', function()
 	return View::make('layout');
 }));
 
-Route::get('books', array('as' => 'indexBooks', 'uses' => 'BookController@index'));
-
-Route::post('books/insert', 'Book@insert');
+Route::resource('books', 'BookController');
