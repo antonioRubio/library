@@ -1,10 +1,11 @@
 <?php
 
-class HomeController extends BaseController {
+class BookController extends BaseController {
 
-	public function showInsert()
+	public function index()
 	{
-		return View::make('hello');
+		$books = Book::all();
+		return View::make('books/index')->with('books', $books);
 	}
 
 }

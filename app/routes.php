@@ -11,21 +11,11 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', array('as' => 'index', function()
 {
 	return View::make('layout');
-});
+}));
 
-Route::get('/hello/{name}', function($name)
-{
-    return View::make('hello', array('name' => $name));
-})->where('name', '[a-zA-Z]+');
-
-Route::get('books', function()
-{
-    $books = Book::all();
-
-    return View::make('books/books')->with('books', $books);
-});
+Route::get('books', array('as' => 'indexBooks', 'uses' => 'BookController@index'));
 
 Route::post('books/insert', 'Book@insert');
