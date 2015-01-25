@@ -88,7 +88,8 @@ class BookController extends BaseController
 	 */
 	public function destroy($id)
 	{
-		//
+		Book::destroy($id);
+		return Redirect::route('books.index');
 	}
 
 }
