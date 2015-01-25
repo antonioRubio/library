@@ -10,7 +10,9 @@ class BookController extends BaseController
 	public function index()
 	{
 		$books = Book::all();
-		return View::make('books/index')->with('books', $books);
+		return View::make('books/index')
+			->with('books', $books)
+			->with('title', 'Index');
 	}
 
 
@@ -21,7 +23,8 @@ class BookController extends BaseController
 	 */
 	public function create()
 	{
-		//
+		return View::make('books/create')
+			->with('title', 'Create');
 	}
 
 
@@ -32,7 +35,12 @@ class BookController extends BaseController
 	 */
 	public function store()
 	{
-		//
+		$name = Input::get('name');
+		$isbn = Input::get('isbn');
+		if (!empty($name) && !empty($isbn)) {
+			Book::firstOrCreate(array('name' => $name, 'isbn' => $isbn));
+		}
+		return Redirect::route('books.index');
 	}
 
 
