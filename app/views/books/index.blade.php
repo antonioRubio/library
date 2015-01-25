@@ -3,7 +3,7 @@
     <h1>Index Books</h1>
     <ul>
         @foreach($books as $book)
-            <li>{{ $book->isbn }}</li>
+            <li>{{ $book->name }} ({{ $book->isbn }})</li>
         @endforeach
     </ul>
 @stop

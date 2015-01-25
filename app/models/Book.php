@@ -14,4 +14,5 @@ class Book extends Eloquent
      * @var string
      */
     protected $table = 'books';
+    protected $fillable = ['name', 'isbn'];
 }

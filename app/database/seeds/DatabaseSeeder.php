@@ -23,10 +23,10 @@ class BooksTableSeeder extends Seeder
 	{
 		DB::table('books')->delete();
 		DB::table('books')->insert(array(
-			array('id' => 1, 'name' => 'example1', 'isbn' => '123'),
-			array('id' => 2, 'name' => 'example2', 'isbn' => '456'),
-			array('id' => 3, 'name' => 'example3', 'isbn' => '789'),
-			array('id' => 4, 'name' => 'example4', 'isbn' => '000'),
+			array('id' => 1, 'name' => 'example1', 'isbn' => '123', 'created_at' => new DateTime(), 'updated_at' => new DateTime()),
+			array('id' => 2, 'name' => 'example2', 'isbn' => '456', 'created_at' => new DateTime(), 'updated_at' => new DateTime()),
+			array('id' => 3, 'name' => 'example3', 'isbn' => '789', 'created_at' => new DateTime(), 'updated_at' => new DateTime()),
+			array('id' => 4, 'name' => 'example4', 'isbn' => '000', 'created_at' => new DateTime(), 'updated_at' => new DateTime())
 		));
 	}
 }
