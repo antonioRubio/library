@@ -1,6 +1,7 @@
 @extends('layout')
 @section('content')
     <h1>Index Books</h1>
+    <p>{{ HTML::linkRoute('books.create', 'New Book') }}</p>
     <ul>
         @foreach($books as $book)
             <li>
