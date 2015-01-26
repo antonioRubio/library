@@ -64,7 +64,10 @@ class BookController extends BaseController
 	 */
 	public function edit($id)
 	{
-		//
+		$book = Book::find($id);
+		return View::make('books/edit')
+			->with('book', $book)
+			->with('title', 'Edit');
 	}
 
 
@@ -76,7 +79,18 @@ class BookController extends BaseController
 	 */
 	public function update($id)
 	{
-		//
+		$rules = array(
+			'name' => 'required',
+			'isbn' => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+		if (!$validator->fails()) {
+			$book = Book::find($id);
+			$book->name = Input::get('name');
+			$book->isbn = Input::get('isbn');
+			$book->save();
+		}
+		return Redirect::route('books.index');
 	}
 
 
