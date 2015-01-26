@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+    @include('books/navbar')
     {{ Form::model($book, array('route' => array('books.update', $book->id), 'method' => 'put')) }}
     {{ Form::label('name', 'Name') }} {{ Form::text('name', null, array('required' => 'required')) }}
     <br>

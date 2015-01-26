@@ -1,22 +1,35 @@
 @extends('layout')
 @section('content')
-    <h1>Index Books</h1>
-    <p>{{ HTML::linkRoute('books.create', 'New Book') }}</p>
-    <ul>
-        @foreach($books as $book)
-            <li>
-                {{ $book->name }}
-                ({{ $book->isbn }})
-                {{ Form::open(array('route' => array('books.destroy', $book->id), 'method' => 'delete')) }}
-                    {{ Form::submit('delete') }}
-                {{ Form::close() }}
-                {{ Form::open(array('route' => array('books.edit', $book->id), 'method' => 'get')) }}
-                {{ Form::submit('edit') }}
-                {{ Form::close() }}
-                {{ Form::open(array('route' => array('books.show', $book->id), 'method' => 'get')) }}
-                {{ Form::submit('show') }}
-                {{ Form::close() }}
-            </li>
-        @endforeach
+    @include('books/navbar')
+    <h1>All the Books</h1>
+    @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @endif
+    <table class="table table-stripped table-bordered">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Isbn</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($books as $book)
+                <tr>
+                    <td>{{ $book->id }}</td>
+                    <td>{{ $book->name }}</td>
+                    <td>{{ $book->isbn }}</td>
+                    <td>
+                        {{ Form::open(array('route' => array('books.destroy', $book->id), 'method' => 'delete', 'class' => 'pull-right')) }}
+                            {{ Form::submit('Delete this Book', array('class' => 'btn btn-warning')) }}
+                        {{ Form::close() }}
+                        {{ HTML::linkRoute('books.show', 'Show this book', array('id' => $book->id), array('class' => 'btn btn-small btn-success')) }}
+                        {{ HTML::linkRoute('books.edit', 'Edit this book', array('id' => $book->id), array('class' => 'btn btn-small btn-info')) }}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
     </ul>
 @stop

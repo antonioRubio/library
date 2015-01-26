@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+    @include('books/navbar')
     {{ Form::open(array('route' => 'books.store')) }}
         {{ Form::label('name', 'Name') }} {{ Form::text('name', null, array('required' => 'required')) }}
         <br>
