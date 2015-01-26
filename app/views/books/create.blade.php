@@ -4,10 +4,12 @@
     {{ HTML::ul($errors->all()) }}
     {{ Form::open(array('route' => 'books.store')) }}
         <div class="form-group">
-            {{ Form::label('name', 'Name') }} {{ Form::text('name', null, array('required' => 'required')) }}
+            {{ Form::label('name', 'Name') }}
+            {{ Form::text('name', null, array('required' => 'required', 'class' => 'form-control')) }}
         </div>
         <div class="form-group">
-        {{ Form::label('isbn', 'Isbn') }} {{ Form::text('isbn', null, array('required' => 'required')) }}
+            {{ Form::label('isbn', 'Isbn') }}
+            {{ Form::text('isbn', null, array('required' => 'required', 'class' => 'form-control')) }}
         </div>
         {{ Form::submit('submit', array('class' => 'btn btn-primary')) }}
     {{ Form::close() }}
