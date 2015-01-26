@@ -35,11 +35,18 @@ class BookController extends BaseController
 	 */
 	public function store()
 	{
-		$name = Input::get('name');
-		$isbn = Input::get('isbn');
-		if (!empty($name) && !empty($isbn)) {
-			Book::firstOrCreate(array('name' => $name, 'isbn' => $isbn));
+		$rules = array(
+			'name' => 'required',
+			'isbn' => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->fails()) {
+			return Redirect::route('books.create')
+				->withErrors($validator)
+				->withInput(Input::all());
 		}
+		Book::create(array('name' => Input::get('name'), 'isbn' => Input::get('isbn')));
+		Session::flash('message', 'Successfully created book!');
 		return Redirect::route('books.index');
 	}
 
