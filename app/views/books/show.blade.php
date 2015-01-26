@@ -9,7 +9,5 @@
     {{ Form::open(array('route' => array('books.destroy', $book->id), 'method' => 'delete', 'class' => 'pull-right')) }}
     {{ Form::submit('Delete', array('class' => 'btn btn-small btn-warning')) }}
     {{ Form::close() }}
-    {{ Form::open(array('route' => array('books.edit', $book->id), 'method' => 'get')) }}
-    {{ Form::submit('Edit', array('class' => 'btn btn-small btn-info')) }}
-    {{ Form::close() }}
+    {{ HTML::linkRoute('books.edit', 'Edit', array('id' => $book->id), array('class' => 'btn btn-small btn-info')) }}
 @stop
