@@ -13,6 +13,9 @@
                 {{ Form::open(array('route' => array('books.edit', $book->id), 'method' => 'get')) }}
                 {{ Form::submit('edit') }}
                 {{ Form::close() }}
+                {{ Form::open(array('route' => array('books.show', $book->id), 'method' => 'get')) }}
+                {{ Form::submit('show') }}
+                {{ Form::close() }}
             </li>
         @endforeach
     </ul>
