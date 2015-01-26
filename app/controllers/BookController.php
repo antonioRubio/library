@@ -45,7 +45,7 @@ class BookController extends BaseController
 				->withErrors($validator)
 				->withInput(Input::all());
 		}
-		Book::create(array('name' => Input::get('name'), 'isbn' => Input::get('isbn')));
+		Book::create(Input::all());
 		Session::flash('message', 'Successfully created book!');
 		return Redirect::route('books.index');
 	}
@@ -113,6 +113,7 @@ class BookController extends BaseController
 	public function destroy($id)
 	{
 		Book::destroy($id);
+		Session::flash('message', 'Successfully deleted book!');
 		return Redirect::route('books.index');
 	}
 
