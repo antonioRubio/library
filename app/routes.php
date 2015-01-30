@@ -16,4 +16,11 @@ Route::get('/', array('as' => 'index', function()
 	return View::make('layout');
 }));
 
-Route::resource('books', 'BookController');
+Route::group(array('before' => 'auth'), function()
+{
+	Route::resource('books', 'BookController');
+});
+
+Route::any('/login', array('as' => 'login', 'uses' => 'UserController@login'));
+
+Route::any('/logout', array('as' => 'logout', 'uses' => 'UserController@logout'));
