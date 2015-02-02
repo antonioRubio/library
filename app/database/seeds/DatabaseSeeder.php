@@ -23,14 +23,9 @@ class BooksTableSeeder extends Seeder
 {
 	public function run()
 	{
-		$books = array(
-			array('name' => 'example1', 'isbn' => '123'),
-			array('name' => 'example2', 'isbn' => '456'),
-			array('name' => 'example3', 'isbn' => '789'),
-			array('name' => 'example4', 'isbn' => '000')
-		);
-		foreach($books as $book) {
-			Book::create($book);
+		$booksNum = 100;
+		for ($i = 0; $i < $booksNum; $i++) {
+			Book::create(array('name' => "name$i", 'isbn' => "isbn$i"));
 		}
 	}
 }
