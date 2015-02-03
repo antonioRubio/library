@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: administrador
- * Date: 17/01/15
- * Time: 12:34
- */
 
 class Book extends Eloquent
 {
@@ -15,4 +9,9 @@ class Book extends Eloquent
      */
     protected $table = 'books';
     protected $fillable = ['name', 'isbn'];
+
+    public function tags()
+    {
+        return $this->belongsToMany('Tag');
+    }
 }

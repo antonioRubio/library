@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
 
 		$this->call('BooksTableSeeder');
 		$this->call('UsersTableSeeder');
+		$this->call('TagsTableSeeder');
+		$this->call('TagsBooksTableSeeder');
 	}
 
 }
@@ -41,5 +43,31 @@ class UsersTableSeeder extends Seeder
 		foreach($users as $user) {
 			User::create($user);
 		}
+	}
+}
+
+class TagsTableSeeder extends Seeder
+{
+	public function run()
+	{
+		$tags = array(
+			array('name' => 'tag1'),
+			array('name' => 'tag2')
+		);
+		foreach($tags as $tag)
+			Tag::create($tag);
+	}
+}
+
+class TagsBooksTableSeeder extends Seeder
+{
+	public function run()
+	{
+		$tags = array();
+		foreach (Tag::all() as $tag)
+			$tags []= $tag->id;
+		$books = Book::all();
+		foreach ($books as $book)
+			$book->tags()->attach($tags);
 	}
 }
